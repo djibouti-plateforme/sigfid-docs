@@ -38,11 +38,13 @@ const sidebars: SidebarsConfig = {
       items: [
         'agent/intro',
         'agent/connexion',
+        'agent/tableau-de-bord',
         {
           type: 'category',
           label: 'Contribuables',
           items: [
             'agent/contribuables/recherche',
+            'agent/contribuables/fiche-contribuable',
             'agent/contribuables/compte-impots',
           ],
         },
@@ -50,11 +52,15 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Déclarations fiscales',
           items: [
+            'agent/declarations/intro',
             'agent/declarations/its',
             'agent/declarations/tva',
             'agent/declarations/ibp-imf',
             'agent/declarations/patentes',
-            'agent/declarations/autres',
+            'agent/declarations/licences',
+            'agent/declarations/irnr',
+            'agent/declarations/ras-ps',
+            'agent/declarations/autres-impots',
           ],
         },
         {
@@ -66,6 +72,7 @@ const sidebars: SidebarsConfig = {
           ],
         },
         'agent/messagerie',
+        'agent/penalites',
       ],
     },
   ],
