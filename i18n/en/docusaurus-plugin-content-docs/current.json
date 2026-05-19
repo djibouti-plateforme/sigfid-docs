@@ -1,0 +1,50 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.adminSidebar.category.Admin fonctionnel": {
+    "message": "Functional Admin",
+    "description": "The label for category Admin fonctionnel in sidebar adminSidebar"
+  },
+  "sidebar.adminSidebar.category.Gestion des utilisateurs": {
+    "message": "User Management",
+    "description": "The label for category Gestion des utilisateurs in sidebar adminSidebar"
+  },
+  "sidebar.adminSidebar.category.Données de référence": {
+    "message": "Reference Data",
+    "description": "The label for category Données de référence in sidebar adminSidebar"
+  },
+  "sidebar.adminSidebar.category.Ressources": {
+    "message": "Resources",
+    "description": "The label for category Ressources in sidebar adminSidebar"
+  },
+  "sidebar.agentSidebar.category.Agent des impôts": {
+    "message": "Tax Officer",
+    "description": "The label for category Agent des impôts in sidebar agentSidebar"
+  },
+  "sidebar.agentSidebar.category.Contribuables": {
+    "message": "Taxpayers",
+    "description": "The label for category Contribuables in sidebar agentSidebar"
+  },
+  "sidebar.agentSidebar.category.Déclarations fiscales": {
+    "message": "Tax Returns",
+    "description": "The label for category Déclarations fiscales in sidebar agentSidebar"
+  },
+  "sidebar.agentSidebar.category.Enregistrement": {
+    "message": "Registration",
+    "description": "The label for category Enregistrement in sidebar agentSidebar"
+  },
+  "sidebar.agentSidebar.category.Ressources": {
+    "message": "Resources",
+    "description": "The label for category Ressources in sidebar agentSidebar"
+  },
+  "sidebar.contribuableSidebar.category.Espace contribuable": {
+    "message": "Taxpayer Space",
+    "description": "The label for category Espace contribuable in sidebar contribuableSidebar"
+  },
+  "sidebar.contribuableSidebar.category.Ressources": {
+    "message": "Resources",
+    "description": "The label for category Ressources in sidebar contribuableSidebar"
+  }
+}

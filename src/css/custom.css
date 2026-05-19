@@ -1,43 +1,1149 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Charte graphique SIGFID
+ * Inspirée du drapeau de la République de Djibouti :
+ *   - Bleu ciel (#6AB2E7)  : ciel
+ *   - Vert (#12AD2B)       : terre
+ *   - Blanc                : paix
+ *   - Rouge (#D7141A)      : étoile
+ *
+ * La couleur primaire est un bleu institutionnel plus profond, dérivé du bleu
+ * du drapeau, mieux adapté à un usage administratif et lisible sur fond clair.
  */
 
-/* You can override the default Infima variables here. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap');
+
 :root {
-  --ifm-color-primary: #0F3A7B;
-  --ifm-color-primary-dark: #0d3370;
-  --ifm-color-primary-darker: #0c3069;
-  --ifm-color-primary-darkest: #0a2757;
-  --ifm-color-primary-light: #114186;
-  --ifm-color-primary-lighter: #12448d;
-  --ifm-color-primary-lightest: #154d9f;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Palette institutionnelle */
+  --sigfid-bleu: #1769B2;
+  --sigfid-bleu-fonce: #0F4A85;
+  --sigfid-bleu-clair: #6AB2E7;
+  --sigfid-vert: #12AD2B;
+  --sigfid-vert-fonce: #0E8821;
+  --sigfid-rouge: #D7141A;
+  --sigfid-or: #E5A100;
+  --sigfid-gris-900: #1A2233;
+  --sigfid-gris-600: #4A5568;
+  --sigfid-gris-100: #F4F6FA;
+
+  /* Variables Infima — mapping institutionnel */
+  --ifm-color-primary: var(--sigfid-bleu);
+  --ifm-color-primary-dark: #145FA0;
+  --ifm-color-primary-darker: #135A98;
+  --ifm-color-primary-darkest: var(--sigfid-bleu-fonce);
+  --ifm-color-primary-light: #2076C1;
+  --ifm-color-primary-lighter: #2680CE;
+  --ifm-color-primary-lightest: #3F94D9;
+
+  --ifm-color-secondary: var(--sigfid-vert);
+  --ifm-color-danger: var(--sigfid-rouge);
+  --ifm-color-warning: var(--sigfid-or);
+
+  --ifm-code-font-size: 90%;
   --ifm-font-family-base: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ifm-heading-font-family: 'Inter', 'Segoe UI', sans-serif;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-weight-semibold: 600;
+  --ifm-line-height-base: 1.65;
+  --ifm-h1-font-size: 2.25rem;
+  --ifm-h2-font-size: 1.625rem;
+  --ifm-h3-font-size: 1.25rem;
+
+  --ifm-navbar-height: 4rem;
+  --ifm-navbar-shadow: 0 1px 0 rgba(15, 74, 133, 0.08);
+  --ifm-toc-border-color: transparent;
+
+  --docusaurus-highlighted-code-line-bg: rgba(23, 105, 178, 0.08);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #3B5EDB;
-  --ifm-color-primary-dark: #2f52d7;
-  --ifm-color-primary-darker: #2c4dd5;
-  --ifm-color-primary-darkest: #2340c1;
-  --ifm-color-primary-light: #476adf;
-  --ifm-color-primary-lighter: #4a6ee0;
-  --ifm-color-primary-lightest: #5a7be4;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #5BA3E0;
+  --ifm-color-primary-dark: #4596DC;
+  --ifm-color-primary-darker: #3C90DA;
+  --ifm-color-primary-darkest: #207AC7;
+  --ifm-color-primary-light: #71B0E4;
+  --ifm-color-primary-lighter: #7BB6E6;
+  --ifm-color-primary-lightest: #9BC8EC;
+  --docusaurus-highlighted-code-line-bg: rgba(91, 163, 224, 0.15);
 }
 
+html {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body {
+  font-family: var(--ifm-font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Navbar === */
 .navbar {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(15, 74, 133, 0.08);
+  backdrop-filter: saturate(180%) blur(8px);
+  background: rgba(255, 255, 255, 0.92);
 }
 
-.menu__link--active {
+[data-theme='dark'] .navbar {
+  background: rgba(20, 28, 45, 0.92);
+  border-bottom-color: rgba(91, 163, 224, 0.12);
+}
+
+.navbar__brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.navbar__title {
+  font-size: 1.05rem;
+}
+
+.navbar__items--right .navbar__link {
+  font-weight: 500;
+}
+
+/* === Bande tricolore institutionnelle sous la navbar === */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--sigfid-bleu-clair) 0%,
+    var(--sigfid-bleu-clair) 33.33%,
+    #ffffff 33.33%,
+    #ffffff 66.66%,
+    var(--sigfid-vert) 66.66%,
+    var(--sigfid-vert) 100%
+  );
+}
+
+/* ========================================================================
+   SIDEBAR — Navigation latérale institutionnelle
+   ======================================================================== */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid rgba(15, 74, 133, 0.06);
+  background-color: #FAFBFD;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background-color: #141C2D;
+  border-right-color: rgba(91, 163, 224, 0.08);
+}
+
+.menu {
+  font-size: 0.93rem;
+  padding: 1.25rem 0.65rem 2rem;
+  font-family: var(--ifm-font-family-base);
+}
+
+.menu__list {
+  margin: 0;
+  padding: 0;
+}
+
+/* Espacement vertical entre items de premier niveau */
+.menu > .menu__list > .menu__list-item + .menu__list-item {
+  margin-top: 0.15rem;
+}
+
+/* Section racine non-collapsible — agit comme un en-tête de section */
+.theme-doc-sidebar-item-category-level-1
+  > .menu__list-item-collapsible
+  > .menu__link--sublist {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sigfid-bleu);
+  padding: 0.6rem 0.75rem 0.4rem;
+  cursor: default;
+  background: transparent !important;
+}
+
+.theme-doc-sidebar-item-category-level-1
+  > .menu__list-item-collapsible
+  > .menu__link--sublist:hover {
+  background: transparent !important;
+  color: var(--sigfid-bleu);
+}
+
+[data-theme='dark']
+  .theme-doc-sidebar-item-category-level-1
+  > .menu__list-item-collapsible
+  > .menu__link--sublist {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Trait de section sous l'en-tête de section racine */
+.theme-doc-sidebar-item-category-level-1
+  > .menu__list-item-collapsible::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(23, 105, 178, 0.18) 0%,
+    rgba(23, 105, 178, 0.02) 100%
+  );
+  margin: 0 0.75rem 0.5rem;
+}
+
+/* Catégorie de second niveau (« Gestion des utilisateurs ») */
+.theme-doc-sidebar-item-category-level-2 > .menu__list-item-collapsible {
+  border-radius: 8px;
+  margin: 0.2rem 0;
+  transition: background-color 0.12s ease;
+}
+
+.theme-doc-sidebar-item-category-level-2
+  > .menu__list-item-collapsible
+  > .menu__link--sublist {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--sigfid-gris-900);
+  letter-spacing: -0.005em;
+  padding: 0.5rem 0.75rem;
+}
+
+[data-theme='dark']
+  .theme-doc-sidebar-item-category-level-2
+  > .menu__list-item-collapsible
+  > .menu__link--sublist {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Items feuilles (liens vers pages) */
+.menu__link {
+  padding: 0.42rem 0.75rem;
+  border-radius: 7px;
+  color: var(--sigfid-gris-600);
+  font-weight: 400;
+  line-height: 1.45;
+  transition: background-color 0.12s ease, color 0.12s ease, padding-left 0.12s ease;
+  position: relative;
+}
+
+[data-theme='dark'] .menu__link {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.menu__link:hover {
+  background-color: rgba(23, 105, 178, 0.06);
+  color: var(--sigfid-bleu-fonce);
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background-color: rgba(91, 163, 224, 0.08);
+  color: #ffffff;
+}
+
+/* État actif — barre verticale + couleur primaire */
+.menu__link--active:not(.menu__link--sublist) {
+  background-color: rgba(23, 105, 178, 0.1);
+  color: var(--sigfid-bleu) !important;
   font-weight: 600;
 }
+
+.menu__link--active:not(.menu__link--sublist)::before {
+  content: '';
+  position: absolute;
+  left: -0.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: calc(100% - 12px);
+  min-height: 14px;
+  background: var(--sigfid-bleu);
+  border-radius: 0 3px 3px 0;
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
+  background-color: rgba(91, 163, 224, 0.15);
+  color: var(--ifm-color-primary-light) !important;
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist)::before {
+  background: var(--ifm-color-primary-light);
+}
+
+/* Caret de catégorie collapsible */
+.menu__caret {
+  border-radius: 6px;
+  padding: 0.4rem;
+  transition: background-color 0.12s ease;
+}
+
+.menu__caret:hover {
+  background-color: rgba(23, 105, 178, 0.08);
+}
+
+.menu__caret::before {
+  background-size: 1.05rem 1.05rem;
+  opacity: 0.6;
+}
+
+/* Sous-listes (items enfants d'une catégorie) — léger trait vertical */
+.menu__list .menu__list {
+  padding-left: 0.65rem;
+  margin-left: 0.5rem;
+  border-left: 1px solid rgba(15, 74, 133, 0.08);
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
+
+[data-theme='dark'] .menu__list .menu__list {
+  border-left-color: rgba(91, 163, 224, 0.12);
+}
+
+/* Bouton « rétracter la barre latérale » */
+.theme-doc-sidebar-container > div > button {
+  border-color: rgba(15, 74, 133, 0.1) !important;
+}
+
+/* ========================================================================
+   TABLEAUX — Référentiels fiscaux
+   ======================================================================== */
 
 article table {
   display: table;
   width: 100%;
+  font-size: 0.92rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.75rem 0;
+  background-color: #ffffff;
+  border: 1px solid rgba(15, 74, 133, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(15, 74, 133, 0.04);
+}
+
+[data-theme='dark'] article table {
+  background-color: #161F33;
+  border-color: rgba(91, 163, 224, 0.14);
+}
+
+article table thead {
+  background: linear-gradient(180deg, #FBFCFE 0%, #F1F4FA 100%);
+}
+
+[data-theme='dark'] article table thead {
+  background: linear-gradient(180deg, rgba(91, 163, 224, 0.08) 0%, rgba(91, 163, 224, 0.04) 100%);
+}
+
+article table thead tr {
+  border-bottom: none;
+}
+
+article table th {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--sigfid-bleu-fonce);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.85rem 1.05rem;
+  text-align: left;
+  border-bottom: 2px solid rgba(23, 105, 178, 0.25);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+[data-theme='dark'] article table th {
+  color: var(--ifm-color-primary-light);
+  border-bottom-color: rgba(91, 163, 224, 0.3);
+}
+
+article table td {
+  padding: 0.75rem 1.05rem;
+  vertical-align: top;
+  border-top: 1px solid rgba(15, 74, 133, 0.06);
+  color: var(--sigfid-gris-900);
+}
+
+[data-theme='dark'] article table td {
+  border-top-color: rgba(91, 163, 224, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Première ligne du body sans bordure haute (déjà fournie par le thead) */
+article table tbody tr:first-child td {
+  border-top: none;
+}
+
+/* Lignes zébrées subtiles */
+article table tbody tr:nth-child(even) {
+  background-color: #FBFCFE;
+}
+
+[data-theme='dark'] article table tbody tr:nth-child(even) {
+  background-color: rgba(91, 163, 224, 0.025);
+}
+
+/* Hover */
+article table tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+article table tbody tr:hover {
+  background-color: rgba(23, 105, 178, 0.06);
+}
+
+[data-theme='dark'] article table tbody tr:hover {
+  background-color: rgba(91, 163, 224, 0.07);
+}
+
+/* Première colonne — emphase label */
+article table tbody td:first-child {
+  font-weight: 500;
+  color: var(--sigfid-gris-900);
+}
+
+[data-theme='dark'] article table tbody td:first-child {
+  color: #ffffff;
+}
+
+/* Code dans les cellules — apparence badge */
+article table td code,
+article table th code {
+  background-color: rgba(23, 105, 178, 0.1);
+  color: var(--sigfid-bleu-fonce);
+  font-size: 0.82rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+[data-theme='dark'] article table td code,
+[data-theme='dark'] article table th code {
+  background-color: rgba(91, 163, 224, 0.15);
+  color: var(--ifm-color-primary-light);
+}
+
+/* Cellule contenant uniquement du gras (label "Total à payer", etc.) */
+article table tbody td strong {
+  color: var(--sigfid-bleu-fonce);
+  font-weight: 700;
+}
+
+[data-theme='dark'] article table tbody td strong {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Wrapper scrollable horizontalement pour les grandes tables sur mobile */
+@media (max-width: 996px) {
+  article table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    box-shadow:
+      inset -8px 0 8px -8px rgba(15, 74, 133, 0.2),
+      inset 8px 0 8px -8px rgba(15, 74, 133, 0.2);
+  }
+
+  article table th {
+    white-space: nowrap;
+  }
+}
+
+/* ========================================================================
+   TOC DROITE — Table des matières « Sur cette page »
+   ======================================================================== */
+
+/* Conteneur sticky de la TOC sur desktop — délimitation avec le contenu */
+.theme-doc-toc-desktop {
+  border-left: 1px solid rgba(15, 74, 133, 0.12);
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+  position: relative;
+}
+
+[data-theme='dark'] .theme-doc-toc-desktop {
+  border-left-color: rgba(91, 163, 224, 0.16);
+}
+
+/* Léger accent bleu en haut du bord pour signaler la section */
+.theme-doc-toc-desktop::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 2px;
+  height: 32px;
+  background: linear-gradient(
+    to bottom,
+    var(--sigfid-bleu) 0%,
+    rgba(23, 105, 178, 0) 100%
+  );
+  border-radius: 1px;
+}
+
+[data-theme='dark'] .theme-doc-toc-desktop::after {
+  background: linear-gradient(
+    to bottom,
+    var(--ifm-color-primary-light) 0%,
+    rgba(91, 163, 224, 0) 100%
+  );
+}
+
+/* En-tête « Sur cette page » injecté via ::before */
+.theme-doc-toc-desktop::before {
+  content: 'Sur cette page';
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sigfid-bleu);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(15, 74, 133, 0.08);
+}
+
+[data-theme='dark'] .theme-doc-toc-desktop::before {
+  color: var(--ifm-color-primary-light);
+  border-bottom-color: rgba(91, 163, 224, 0.12);
+}
+
+/* Liste des liens — on désactive le bord par défaut Infima */
+.table-of-contents {
+  font-size: 0.85rem;
+  border-left: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.table-of-contents li {
+  margin: 0;
+  list-style: none;
+}
+
+.table-of-contents__link {
+  display: block;
+  padding: 0.35rem 0 0.35rem 0.85rem;
+  margin-left: -0.85rem;
+  color: var(--sigfid-gris-600);
+  font-weight: 400;
+  line-height: 1.4;
+  border-left: 2px solid transparent;
+  transition: color 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--sigfid-bleu);
+  text-decoration: none;
+  background-color: rgba(23, 105, 178, 0.04);
+}
+
+.table-of-contents__link--active {
+  color: var(--sigfid-bleu) !important;
+  font-weight: 600;
+  border-left-color: var(--sigfid-bleu);
+}
+
+[data-theme='dark'] .table-of-contents__link {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme='dark'] .table-of-contents__link:hover {
+  color: var(--ifm-color-primary-light);
+  background-color: rgba(91, 163, 224, 0.06);
+}
+
+[data-theme='dark'] .table-of-contents__link--active {
+  color: var(--ifm-color-primary-light) !important;
+  border-left-color: var(--ifm-color-primary-light);
+}
+
+/* Sous-niveaux H3/H4 indentés */
+.table-of-contents ul {
+  padding-left: 0.85rem;
+  margin: 0;
+  border-left: 1px solid rgba(15, 74, 133, 0.06);
+  margin-left: 0.15rem;
+}
+
+[data-theme='dark'] .table-of-contents ul {
+  border-left-color: rgba(91, 163, 224, 0.08);
+}
+
+/* Version mobile — encadré clair avec « Sur cette page » */
+.theme-doc-toc-mobile {
+  border: 1px solid rgba(15, 74, 133, 0.1) !important;
+  border-radius: 10px !important;
+  background: #FAFBFD;
+  margin-bottom: 1.5rem;
+}
+
+[data-theme='dark'] .theme-doc-toc-mobile {
+  background: rgba(91, 163, 224, 0.04);
+  border-color: rgba(91, 163, 224, 0.14) !important;
+}
+
+.theme-doc-toc-mobile button {
+  font-weight: 600;
+  color: var(--sigfid-gris-900);
+}
+
+[data-theme='dark'] .theme-doc-toc-mobile button {
+  color: #ffffff;
+}
+
+/* === Admonitions (info, warning, danger, tip) === */
+.theme-admonition {
+  border-radius: 10px;
+  border-left-width: 4px;
+  box-shadow: 0 1px 2px rgba(15, 74, 133, 0.04);
+}
+
+.theme-admonition-info {
+  border-left-color: var(--sigfid-bleu);
+}
+
+.theme-admonition-warning {
+  border-left-color: var(--sigfid-or);
+}
+
+.theme-admonition-danger {
+  border-left-color: var(--sigfid-rouge);
+}
+
+.theme-admonition-tip {
+  border-left-color: var(--sigfid-vert);
+}
+
+/* === Code blocks === */
+.prism-code {
+  font-size: 0.88rem;
+  border-radius: 8px;
+}
+
+code {
+  font-size: 88%;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+/* === Titres avec ancres === */
+.heading-anchor {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  margin-left: 0.4rem;
+}
+
+h2:hover .heading-anchor,
+h3:hover .heading-anchor {
+  opacity: 0.5;
+}
+
+/* === Footer institutionnel === */
+.footer {
+  background-color: var(--sigfid-bleu-fonce);
+  padding: 3rem 0 2rem;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--sigfid-bleu-fonce);
+}
+
+.footer__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer__link-item {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.15s ease;
+}
+
+.footer__link-item:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer__copyright {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* === Composants homepage === */
+.sigfid-hero {
+  background: linear-gradient(135deg, var(--sigfid-bleu-fonce) 0%, var(--sigfid-bleu) 100%);
+  color: #ffffff;
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sigfid-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 50%, rgba(106, 178, 231, 0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.sigfid-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.sigfid-hero .sigfid-hero-tagline {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 56ch;
+  margin-bottom: 2rem;
+}
+
+.sigfid-hero .sigfid-hero-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
+}
+
+.sigfid-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+.sigfid-stat {
+  background: #ffffff;
+  border: 1px solid rgba(15, 74, 133, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15, 74, 133, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sigfid-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 74, 133, 0.08);
+}
+
+.sigfid-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--sigfid-bleu);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.sigfid-stat-label {
+  font-size: 0.85rem;
+  color: var(--sigfid-gris-600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .sigfid-stat {
+  background: #1a2538;
+  border-color: rgba(91, 163, 224, 0.12);
+}
+
+[data-theme='dark'] .sigfid-stat-value {
+  color: var(--ifm-color-primary-light);
+}
+
+.sigfid-personas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0 3rem;
+}
+
+.sigfid-persona {
+  display: block;
+  background: #ffffff;
+  border: 1px solid rgba(15, 74, 133, 0.1);
+  border-radius: 14px;
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sigfid-persona::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--sigfid-bleu);
+  transition: height 0.2s ease;
+}
+
+.sigfid-persona:hover {
+  text-decoration: none;
+  border-color: var(--sigfid-bleu);
+  box-shadow: 0 8px 24px rgba(15, 74, 133, 0.08);
+  transform: translateY(-2px);
+}
+
+.sigfid-persona:hover::before {
+  height: 5px;
+}
+
+.sigfid-persona[data-persona="admin"]::before {
+  background: var(--sigfid-bleu);
+}
+
+.sigfid-persona[data-persona="agent"]::before {
+  background: var(--sigfid-vert);
+}
+
+.sigfid-persona[data-persona="contribuable"]::before {
+  background: var(--sigfid-or);
+}
+
+.sigfid-persona-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.sigfid-persona-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--sigfid-gris-900);
+  margin: 0 0 0.5rem;
+}
+
+.sigfid-persona-desc {
+  font-size: 0.95rem;
+  color: var(--sigfid-gris-600);
+  line-height: 1.55;
+  margin: 0 0 1rem;
+}
+
+.sigfid-persona-cta {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sigfid-bleu);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+[data-theme='dark'] .sigfid-persona {
+  background: #1a2538;
+  border-color: rgba(91, 163, 224, 0.12);
+}
+
+[data-theme='dark'] .sigfid-persona-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .sigfid-persona-desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='dark'] .sigfid-persona-cta {
+  color: var(--ifm-color-primary-light);
+}
+
+/* ========================================================================
+   GLOSSAIRE FISCAL — Page transverse
+   ======================================================================== */
+
+.glossaire-intro {
+  font-size: 1.05rem;
+  color: var(--sigfid-gris-600);
+  max-width: 70ch;
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .glossaire-intro {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Navigation A-Z sticky */
+.glossaire-nav {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 0.5rem);
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.6rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 74, 133, 0.1);
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 16px rgba(15, 74, 133, 0.06);
+}
+
+[data-theme='dark'] .glossaire-nav {
+  background: rgba(20, 28, 45, 0.92);
+  border-color: rgba(91, 163, 224, 0.15);
+}
+
+.glossaire-nav a,
+.glossaire-nav span {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: var(--ifm-font-family-base);
+  letter-spacing: 0.01em;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.glossaire-nav a {
+  color: var(--sigfid-bleu);
+  background: rgba(23, 105, 178, 0.06);
+  border: 1px solid transparent;
+}
+
+.glossaire-nav a:hover {
+  background: var(--sigfid-bleu);
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(23, 105, 178, 0.3);
+}
+
+.glossaire-nav span {
+  color: rgba(15, 74, 133, 0.25);
+  background: transparent;
+  cursor: default;
+}
+
+[data-theme='dark'] .glossaire-nav a {
+  color: var(--ifm-color-primary-light);
+  background: rgba(91, 163, 224, 0.1);
+}
+
+[data-theme='dark'] .glossaire-nav a:hover {
+  background: var(--ifm-color-primary-light);
+  color: var(--sigfid-bleu-fonce);
+}
+
+[data-theme='dark'] .glossaire-nav span {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+/* Section par lettre */
+.glossaire-letter {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(15, 74, 133, 0.08);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 5rem);
+}
+
+.glossaire-letter:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+[data-theme='dark'] .glossaire-letter {
+  border-top-color: rgba(91, 163, 224, 0.1);
+}
+
+.glossaire-letter-mark {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--sigfid-bleu);
+  line-height: 1;
+  padding-top: 0.25rem;
+  letter-spacing: -0.05em;
+  font-feature-settings: 'ss01';
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 5rem);
+  align-self: start;
+}
+
+[data-theme='dark'] .glossaire-letter-mark {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Entrées sous chaque lettre */
+.glossaire-entries {
+  margin: 0;
+  padding: 0;
+}
+
+.glossaire-entry {
+  padding: 0.85rem 0;
+  border-top: 1px dashed rgba(15, 74, 133, 0.1);
+}
+
+.glossaire-entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+[data-theme='dark'] .glossaire-entry {
+  border-top-color: rgba(91, 163, 224, 0.1);
+}
+
+.glossaire-term {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.glossaire-acronym {
+  display: inline-block;
+  background: var(--sigfid-bleu);
+  color: #ffffff;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-family: var(--ifm-font-family-base);
+  flex-shrink: 0;
+}
+
+.glossaire-acronym[data-kind="org"] {
+  background: var(--sigfid-vert-fonce);
+}
+
+.glossaire-acronym[data-kind="impot"] {
+  background: var(--sigfid-bleu);
+}
+
+.glossaire-acronym[data-kind="doc"] {
+  background: var(--sigfid-or);
+  color: var(--sigfid-gris-900);
+}
+
+.glossaire-acronym[data-kind="concept"] {
+  background: var(--sigfid-gris-600);
+}
+
+.glossaire-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--sigfid-gris-900);
+  line-height: 1.3;
+}
+
+[data-theme='dark'] .glossaire-name {
+  color: #ffffff;
+}
+
+.glossaire-def {
+  margin: 0;
+  color: var(--sigfid-gris-600);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+[data-theme='dark'] .glossaire-def {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.glossaire-ref {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--sigfid-bleu);
+  background: rgba(23, 105, 178, 0.07);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .glossaire-ref {
+  color: var(--ifm-color-primary-light);
+  background: rgba(91, 163, 224, 0.12);
+}
+
+/* Mobile : pile la lettre au-dessus des entrées */
+@media (max-width: 768px) {
+  .glossaire-letter {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .glossaire-letter-mark {
+    font-size: 2.5rem;
+    position: static;
+    padding-top: 0;
+  }
+
+  .glossaire-nav {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .glossaire-nav a,
+  .glossaire-nav span {
+    flex-shrink: 0;
+  }
+}
+
+/* === Impression (utile pour les agents en formation) === */
+@media print {
+  .navbar,
+  .footer,
+  .theme-doc-sidebar-container,
+  .theme-doc-toc-mobile,
+  .theme-doc-toc-desktop,
+  .pagination-nav,
+  .theme-edit-this-page {
+    display: none !important;
+  }
+
+  article {
+    max-width: 100% !important;
+  }
+
+  .theme-admonition {
+    border: 1px solid #aaa;
+    page-break-inside: avoid;
+  }
+
+  table {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
 }

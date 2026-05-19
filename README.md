@@ -1,41 +1,84 @@
-# Website
+# Documentation SIGFID
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Documentation officielle du **Système Intégré de Gestion Fiscale de Djibouti** (SIGFID), la plateforme numérique de la Direction Générale des Impôts de la République de Djibouti.
 
-## Installation
+Site généré avec [Docusaurus](https://docusaurus.io/) 3.10 et déployé sur GitHub Pages.
 
-```bash
-yarn
-```
+## Prérequis
 
-## Local Development
+- Node.js >= 20
+- npm >= 10
 
-```bash
-yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
+## Développement local
 
 ```bash
-yarn build
+npm install
+npm start
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Le serveur de développement démarre sur `http://localhost:3000` avec rechargement automatique.
 
-## Deployment
-
-Using SSH:
+## Build de production
 
 ```bash
-USE_SSH=true yarn deploy
+npm run build
+npm run serve     # prévisualisation locale du build
 ```
 
-Not using SSH:
+Le build est généré dans le répertoire `build/`.
+
+## Vérification du code
 
 ```bash
-GIT_USER=<Your GitHub username> yarn deploy
+npm run typecheck                                  # TypeScript
+npx markdownlint "docs/**/*.md" "*.md"             # Lint markdown
+npx lychee './**/*.md'                             # Vérification des liens
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## Structure du projet
+
+```
+sigfid-docs/
+├── docs/                       # Contenu de la documentation (Markdown)
+│   ├── admin/                  # Guide administrateur fonctionnel
+│   ├── agent/                  # Guide agent des impôts
+│   ├── contribuable/           # Guide contribuable
+│   ├── glossaire.md            # Glossaire fiscal
+│   ├── faq.md                  # Foire aux questions
+│   └── changelog.md            # Journal des évolutions
+├── src/css/custom.css          # Charte graphique DGI / Djibouti
+├── static/img/                 # Logo, favicon, carte sociale
+├── .github/                    # Workflows CI/CD + Dependabot
+├── docusaurus.config.ts        # Configuration Docusaurus
+├── sidebars.ts                 # Structure de la navigation
+├── LICENSE                     # Licence — Tous droits réservés DGI
+└── SECURITY.md                 # Politique de divulgation responsable
+```
+
+## Déploiement
+
+Tout push sur `main` déclenche automatiquement le build et le déploiement sur GitHub Pages via le workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+## Contribution
+
+Ce dépôt est maintenu par la Direction Générale des Impôts. Les contributions externes doivent passer par une pull request avec **revue obligatoire** d'un mainteneur DGI.
+
+Avant toute PR :
+
+1. Vérifier que les références CGI / LFI citées sont exactes
+2. N'utiliser **aucune donnée réelle de contribuable** (NIF, noms, montants) — uniquement des données fictives dans les exemples
+3. **Toute page FR ajoutée doit avoir sa traduction EN** dans `i18n/en/docusaurus-plugin-content-docs/current/` au même chemin relatif. Le workflow CI [`translation-parity.yml`](.github/workflows/translation-parity.yml) bloque le merge sinon.
+4. Faire passer `npm run build` localement sans erreur ni avertissement
+5. Signer les commits (GPG / Sigstore) si vous êtes mainteneur DGI
+
+## Sécurité
+
+Pour signaler une vulnérabilité, consulter [`SECURITY.md`](SECURITY.md). **Ne pas créer d'issue publique.**
+
+## Décisions d'architecture
+
+Les choix structurants (sécurité, infrastructure, gouvernance) sont tracés dans [`adr/`](adr/) au format Architecture Decision Record (ADR). Consulter [`adr/README.md`](adr/README.md) pour l'index et la procédure de création d'un nouvel ADR.
+
+## Licence
+
+© République de Djibouti — Direction Générale des Impôts. Voir [`LICENSE`](LICENSE).

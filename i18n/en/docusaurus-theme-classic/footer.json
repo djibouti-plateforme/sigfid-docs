@@ -1,0 +1,58 @@
+{
+  "logo.alt": {
+    "message": "General Directorate of Taxes — Ministry of Budget",
+    "description": "The alt text of footer logo"
+  },
+  "link.title.Guides": {
+    "message": "Guides",
+    "description": "The title of the footer links column with title=Guides in the footer"
+  },
+  "link.title.Ressources": {
+    "message": "Resources",
+    "description": "The title of the footer links column with title=Ressources"
+  },
+  "link.title.Légal": {
+    "message": "Legal",
+    "description": "The title of the footer links column with title=Légal"
+  },
+  "link.item.label.Admin fonctionnel": {
+    "message": "Functional Admin",
+    "description": "Footer link item"
+  },
+  "link.item.label.Agent des impôts": {
+    "message": "Tax Officer",
+    "description": "Footer link item"
+  },
+  "link.item.label.Contribuable": {
+    "message": "Taxpayer",
+    "description": "Footer link item"
+  },
+  "link.item.label.Glossaire fiscal": {
+    "message": "Tax Glossary",
+    "description": "Footer link item"
+  },
+  "link.item.label.Foire aux questions": {
+    "message": "Frequently Asked Questions",
+    "description": "Footer link item"
+  },
+  "link.item.label.Journal des évolutions": {
+    "message": "Changelog",
+    "description": "Footer link item"
+  },
+  "link.item.label.Code Général des Impôts 2025": {
+    "message": "General Tax Code 2025",
+    "description": "Footer link item"
+  },
+  "link.item.label.Direction Générale des Impôts": {
+    "message": "General Directorate of Taxes",
+    "description": "Footer link item"
+  },
+  "link.item.label.Politique de sécurité": {
+    "message": "Security Policy",
+    "description": "Footer link item"
+  },
+  "copyright": {
+    "message": "© 2026 General Directorate of Taxes — Republic of Djibouti. Documentation published for information and training purposes. All rights reserved.",
+    "description": "The footer copyright"
+  }
+}

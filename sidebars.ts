@@ -28,6 +28,13 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Ressources',
+      collapsible: true,
+      collapsed: true,
+      items: ['glossaire', 'faq', 'changelog'],
+    },
   ],
 
   agentSidebar: [
@@ -75,6 +82,13 @@ const sidebars: SidebarsConfig = {
         'agent/penalites',
       ],
     },
+    {
+      type: 'category',
+      label: 'Ressources',
+      collapsible: true,
+      collapsed: true,
+      items: ['glossaire', 'faq', 'changelog'],
+    },
   ],
 
   contribuableSidebar: [
@@ -89,6 +103,13 @@ const sidebars: SidebarsConfig = {
         'contribuable/declarations',
         'contribuable/messagerie',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Ressources',
+      collapsible: true,
+      collapsed: true,
+      items: ['glossaire', 'faq', 'changelog'],
     },
   ],
 };

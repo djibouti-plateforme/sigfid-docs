@@ -1,0 +1,89 @@
+name: Parité des traductions FR / EN
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "i18n/en/docusaurus-plugin-content-docs/**"
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "i18n/en/docusaurus-plugin-content-docs/**"
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    name: Vérifier FR ↔ EN
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Vérifier la parité des pages
+        run: |
+          set -e
+          FR_DIR="docs"
+          EN_DIR="i18n/en/docusaurus-plugin-content-docs/current"
+
+          if [ ! -d "$EN_DIR" ]; then
+            echo "::error::Dossier de traductions absent : $EN_DIR"
+            echo "Créez d'abord la structure i18n/en/... avant de pousser de nouvelles pages."
+            exit 1
+          fi
+
+          missing_en=()
+          orphan_en=()
+
+          # Pages FR sans traduction EN
+          while IFS= read -r fr_file; do
+            rel="${fr_file#$FR_DIR/}"
+            if [ ! -f "$EN_DIR/$rel" ]; then
+              missing_en+=("$rel")
+            fi
+          done < <(find "$FR_DIR" \( -name "*.md" -o -name "*.mdx" \) -type f)
+
+          # Pages EN orphelines (source FR absente)
+          while IFS= read -r en_file; do
+            rel="${en_file#$EN_DIR/}"
+            if [ ! -f "$FR_DIR/$rel" ]; then
+              orphan_en+=("$rel")
+            fi
+          done < <(find "$EN_DIR" \( -name "*.md" -o -name "*.mdx" \) -type f)
+
+          fail=0
+
+          if [ ${#missing_en[@]} -gt 0 ]; then
+            echo ""
+            echo "❌ ${#missing_en[@]} page(s) FR sans traduction anglaise :"
+            echo ""
+            for f in "${missing_en[@]}"; do
+              echo "   • docs/$f"
+              echo "     → créer : i18n/en/docusaurus-plugin-content-docs/current/$f"
+              echo "::error file=docs/$f,title=Traduction EN manquante::Créer i18n/en/docusaurus-plugin-content-docs/current/$f avec le contenu traduit en anglais."
+              echo ""
+            done
+            fail=1
+          fi
+
+          if [ ${#orphan_en[@]} -gt 0 ]; then
+            echo ""
+            echo "⚠️  ${#orphan_en[@]} fichier(s) EN orphelin(s) (source FR absente) :"
+            echo ""
+            for f in "${orphan_en[@]}"; do
+              echo "   • i18n/en/docusaurus-plugin-content-docs/current/$f"
+              echo "::warning file=i18n/en/docusaurus-plugin-content-docs/current/$f,title=Fichier EN orphelin::La source FR docs/$f n'existe pas. Supprimer ce fichier ou recréer la source FR ?"
+            done
+            echo ""
+          fi
+
+          if [ $fail -eq 0 ] && [ ${#orphan_en[@]} -eq 0 ]; then
+            count=$(find "$FR_DIR" \( -name "*.md" -o -name "*.mdx" \) -type f | wc -l)
+            echo "✅ Parité parfaite : $count pages (FR ↔ EN)"
+          fi
+
+          exit $fail

@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "SIGFID Docs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "General Directorate of Taxes — Ministry of Budget, Republic of Djibouti",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Admin fonctionnel": {
+    "message": "Functional Admin",
+    "description": "Navbar item with label Admin fonctionnel"
+  },
+  "item.label.Agent des impôts": {
+    "message": "Tax Officer",
+    "description": "Navbar item with label Agent des impôts"
+  },
+  "item.label.Contribuable": {
+    "message": "Taxpayer",
+    "description": "Navbar item with label Contribuable"
+  },
+  "item.label.Glossaire": {
+    "message": "Glossary",
+    "description": "Navbar item with label Glossaire"
+  },
+  "item.label.FAQ": {
+    "message": "FAQ",
+    "description": "Navbar item with label FAQ"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.aria-label.Dépôt GitHub SIGFID": {
+    "message": "SIGFID GitHub repository",
+    "description": "ARIA label for the GitHub navbar item"
+  }
+}
